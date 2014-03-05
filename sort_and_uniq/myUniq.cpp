@@ -40,6 +40,14 @@ bool getNewLine(set<string> & s,string & lineStr){
     }
     return false;
 }
+void printSet(set<string> & theSet){
+	set<string>::iterator iter = theSet.begin();
+	cout <<"Set.size:" <<theSet.size();
+	while(iter != theSet.end()){
+		cout <<*iter++ <<"\t";
+	}
+	cout <<endl;
+}
 
 int main(){
     string lineStr1 = "",lineStr2;
@@ -53,13 +61,17 @@ int main(){
         }
         set<string>::iterator iter = s3.begin();
         set_intersection(s1.begin(),s1.end(),s2.begin(),s2.end(),inserter(s3,iter));
+//		cout <<"~~~~~~~~~~~~~~~~~~~~~~~~~~~" <<endl;
+//		cout <<"The line1:" <<lineStr1 <<endl;
+//		cout <<"The line2:" <<lineStr2 <<endl;
+//		printSet(s1); printSet(s2); printSet(s3);
         float pro = (double )(2 * (s3.size())) / (double)(s1.size() + s2.size());
         if(pro <= 0.8){
             cout <<lineStr2 <<endl;
         }
+//		lineStr1 = lineStr2;
         s1 = s2;
-        lineStr1 = lineStr2;
-        s2.empty(); s3.empty();
+        s2.clear(); s3.clear();
     }
     return 0;
 }
